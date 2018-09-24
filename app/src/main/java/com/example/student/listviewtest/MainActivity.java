@@ -7,10 +7,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private ListView listView;
+    private SearchView searchView;
+
     private String[] divisions={"dhaka"," khulna"," chittagong","sylet", "rajshahi"};
 
     @Override
@@ -27,10 +30,12 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         setContentView(R.layout.activity_main);
         listView = findViewById(R.id.listViewId);
+        searchView= findViewById(R.id.searchViewId);
+        setTitle("Division");
     }
 
     private void initFunctionality() {
-        ArrayAdapter adapter = new ArrayAdapter(this,R.layout.sample_layout,R.id.itemId,divisions);
+        final ArrayAdapter adapter = new ArrayAdapter(this,R.layout.sample_layout,R.id.itemId,getResources().getStringArray(R.array.countries_array));
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -42,6 +47,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                // Toast.makeText(MainActivity.this, "" +div, Toast.LENGTH_SHORT).show();
 
+            }
+        });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+
+                adapter.getFilter().filter(s);
+
+                return false;
             }
         });
     }

@@ -4,14 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
+
+   <SearchView
+       android:layout_width="match_parent"
+       android:queryHint="Search district"
+       android:id="@+id/searchViewId"
+       android:foregroundTint="#502b2b"
+       android:background="#645e5e"
+       android:layout_height="wrap_content">
+
+   </SearchView>
 
    <ListView
        android:layout_width="match_parent"
        android:id="@+id/listViewId"
        android:divider="#000"
-       android:dividerHeight="30dp"
+       android:dividerHeight="8dp"
        android:listSelector="#453f3f"
-       android:layout_height="match_parent"></ListView>
+       android:layout_height="match_parent">
+
+   </ListView>
 
 </LinearLayout>
